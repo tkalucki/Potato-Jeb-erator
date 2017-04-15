@@ -7,10 +7,11 @@ public class PanelMain extends JApplet
 
  public void init()
   {
+	 /*
 	Random rnd = new Random();
 		//Keep
 	//int amount = rnd.nextInt(20);
-	int amount = 50;
+	int amount = 500;
 	int h = 2000; int w = 2000; int r = 30; int minr=5;
 	IslandCircle islands[] = new IslandCircle[amount];
 	for(int i = 0; i<amount; i++){
@@ -26,7 +27,7 @@ public class PanelMain extends JApplet
 				int y_1 = ic.getY();
 				int r_combined = islands[j-1].getR() + ic.getR();
 				int len = (int) Math.sqrt((x_0 - x_1)*(x_0 - x_1) + (y_0 - y_1)*(y_0 - y_1)); //Length between both origins
-				if(len <= r_combined)
+				if(len <= r_combined || x_1 + ic.getR() > 2000 || x_1 - ic.getR() < 0 || y_1 + ic.getR() > 2000 || y_1 - ic.getR() < 0)
 				{
 					j = -1; //Break the for loop if there is overlap
 				}
@@ -34,7 +35,7 @@ public class PanelMain extends JApplet
 			}
 		}
 		if (j < 0)
-			i--; //if there was collision dont increment i and regenerate a new island
+			i--; //if there was collision don't increment i and regenerate a new island
 		else
 		{
 		islands[i] = ic;
@@ -42,7 +43,8 @@ public class PanelMain extends JApplet
 		ic.printInfo();
 		}
 		}
-    WholePanel wholePanel = new WholePanel(islands);
+		*/
+    WholePanel wholePanel = new WholePanel();
     getContentPane().add(wholePanel);
     setSize (802, 852);
   }

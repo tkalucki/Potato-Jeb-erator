@@ -14,30 +14,73 @@ public class WholePanel extends JPanel
 
    private CanvasPanel canvas;
    private JPanel BottomPanel;
+   private JPanel BottomLeftPanel;
+   private JPanel BottomRightPanel;
    private JButton save;
-   private IslandCircle[] islands;
+   private JButton generator;
    private JLabel label1;
+   private JLabel label2;
+   private JLabel label3;
+   private JLabel label4;
+   private JLabel label5;
+   private JTextField area1;
+   private JTextField area2;
+   private IslandCircle[] islands;
+   private IslandRectangle[] islands2;
+   private Generator gen;
+   private int r;
+   private int minr;
+   private int heightMax;
+   private int heightMin;
+   private int widthMax;
+   private int widthMin;
+   private int flag;
 // private ArrayList pointList;
 //   private Point pt;
 //   private int count;
 
 
-  public WholePanel(IslandCircle[] islands) {
-	  this.islands = islands;
-      save = new JButton ("Save");
+  public WholePanel() {
+	  r = 30; minr = 5; widthMax = 30; widthMin = 5; heightMax = 30; heightMin = 5; flag = 0; //Initialize the Limits of the islands generated ***
+      save = new JButton("Save");
+      generator = new JButton("Gen Map");
       save.addActionListener(new ButtonListener());
+      generator.addActionListener(new ButtonListener());
       label1 = new JLabel();
+      label2 = new JLabel();
+      label3 = new JLabel();
+      label4 = new JLabel();
+      label5 = new JLabel();
       BottomPanel = new JPanel();
-      BottomPanel.setLayout(new FlowLayout());
+      BottomLeftPanel = new JPanel();
+      BottomRightPanel = new JPanel();
+      BottomRightPanel.setLayout(new FlowLayout());
       save.setPreferredSize(new Dimension(80,30));
-      BottomPanel.add(save);
-      BottomPanel.add(label1);
+      BottomRightPanel.add(generator);
+      BottomRightPanel.add(label5);
+      BottomRightPanel.add(save);
+      BottomRightPanel.add(label1);
+      BottomLeftPanel.setLayout(new GridLayout(3,2));
+      label2.setText("Number of Circle Islands");
+      label3.setText("Number of Rectangle Islands");
+      label4.setText("Default of 0 will have a random number");
+      BottomLeftPanel.add(label2);
+      BottomLeftPanel.add(label3);
+      area1 = new JTextField("0");
+      area2 = new JTextField("0");
+      BottomLeftPanel.add(area1);
+      BottomLeftPanel.add(area2);
+      BottomLeftPanel.add(label4);
       canvas = new CanvasPanel();
+      BottomPanel.setLayout(new BorderLayout());
+      BottomPanel.add(BottomLeftPanel, BorderLayout.WEST);
+      BottomPanel.add(BottomRightPanel, BorderLayout.CENTER);
       //canvas.addMouseListener(new PointListener());
-
+      //JSplitPane bottomSp = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, BottomLeftPanel, BottomRightPanel);
       JSplitPane sp = new JSplitPane(JSplitPane.VERTICAL_SPLIT, canvas, BottomPanel);
       sp.setResizeWeight(1.0);
       setLayout(new BorderLayout());
+      //add(bottomSp);
       add(sp);
 }
 
@@ -49,40 +92,44 @@ public class WholePanel extends JPanel
        {
         super.paintComponent(page);
         setBackground(Color.CYAN);
-        for(int i = 0; i<islands.length; i++)
+        if(flag == 1)
         {
-        	//unscaled, to use set bounds for random generation to 800 in PanelMain
-        	//page.drawOval(islands[i].getX(), islands[i].getY(), islands[i].getR(), islands[i].getR());
-        	
-        	//scaled from 2000 to 800 by multiplying by 0.4
-        	page.setColor(Color.GREEN);
-        	int x = (int) (islands[i].getX()*0.4);
-        	int y = (int) (islands[i].getY()*0.4);
-        	int r = (int) (islands[i].getR()*0.4);
-        	page.fillOval(x, y, r, r); //draw green island
-        	page.setColor(Color.BLACK);
-        	page.drawOval(x, y, r, r); //draw black border
+	        for(int i = 0; i<islands.length; i++) //Draws circle islands to a scale of 800 x 800
+	        {
+	        	//scaled from 2000 to 800 by multiplying by 0.4
+	        	page.setColor(Color.GREEN);
+	        	int x = (int) (islands[i].getX()*0.4);
+	        	int y = (int) (islands[i].getY()*0.4);
+	        	int r = (int) (islands[i].getR()*0.4);
+	        	page.fillOval(x, y, r, r); //draw green island
+	        	page.setColor(Color.BLACK);
+	        	page.drawOval(x, y, r, r); //draw black border
+	
+	        }
+	        //pixel size check
+	        Dimension appletSize = this.getSize();
+	        int appletHeight = appletSize.height;
+	        int appletWidth = appletSize.width;
+	        
+	        page.drawString("This applet is " + appletHeight + 
+	          " pixels high by " + appletWidth + " pixels wide.", 
+	          15, appletHeight/2);
 
+	        for(int i = 0; i<islands2.length; i++)
+	        {
+	        	//scaled from 2000 to 800 by multiplying by 0.4
+	        	page.setColor(Color.GREEN);
+	        	int X = (int) (islands2[i].getX()*0.4);
+	        	int Y = (int) (islands2[i].getY()*0.4);
+	        	int w = (int) (islands2[i].getW()*0.4);
+	        	int h = (int) (islands2[i].getH()*0.4);
+	        	page.fillRect(X, Y, w, h);; //draw green island
+	        	page.setColor(Color.BLACK);
+	        	page.drawRect(X, Y, w, h);; //draw black border
+
+	        }
         }
-        //pixel size check
-        Dimension appletSize = this.getSize();
-        int appletHeight = appletSize.height;
-        int appletWidth = appletSize.width;
-        
-        page.drawString("This applet is " + appletHeight + 
-          " pixels high by " + appletWidth + " pixels wide.", 
-          15, appletHeight/2);
-        /*
-        int gridWidth = (int)(this.getSize().getWidth()/(4.0));
-        int gridHeight = (int)(this.getSize().getHeight()/(4.0)); 
-        for (int i=1; i< 4; i++)
-        {
-        page.drawLine(0,gridHeight*i,(int)(getSize().getWidth()),gridHeight*i);
-        page.drawLine(gridWidth*i,0,gridWidth*i,(int)(getSize().getHeight()));
-        }
-        */
-        
-  	    }
+  	   }
     } //end of CanvasPanel class
 
 
@@ -134,6 +181,24 @@ public class WholePanel extends JPanel
     	        else {
     	          label1.setText("You canceled.");
     	        }
+    	  }
+    	  else if(event.getSource() == generator)
+    	  {
+    		  int cAmount = Integer.parseInt(area1.getText());
+    		  int rAmount = Integer.parseInt(area2.getText());
+    		  if(cAmount < 0 || cAmount > 5000 || rAmount < 0 || rAmount > 5000)
+    			  label5.setText("Invalid Input");
+    		  else
+    		  { 
+    			  gen = new Generator();
+    			  islands = new IslandCircle[cAmount];
+    			  gen.circleGen(r, minr, cAmount, islands);
+    			  islands2 = new IslandRectangle[rAmount];
+    			  gen.rectangleGen(widthMax, widthMin, heightMax, heightMin, rAmount, islands2);
+    			  flag = 1;
+    			  label5.setText("Map Generated");
+    			  repaint();
+    		  }
     	  }
       }
    } 

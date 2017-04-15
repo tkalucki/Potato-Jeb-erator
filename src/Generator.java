@@ -2,13 +2,18 @@ import java.util.Random;
 
 
 public class Generator {
-	public static void main(String args[]){
-		Random rnd = new Random();
-		//Keep
-		int amount = rnd.nextInt(20);
-		int h = 2000; int w = 2000; int r = 20; int minr=5;
-		IslandCircle islands[] = new IslandCircle[amount];
-		for(int i = 0; i<amount; i++){
+	
+	private int h;
+	private int w;
+
+	public Generator()
+	{
+		h = 2000; w = 2000;	
+	}
+	public void circleGen(int r, int minr, int cAmount, IslandCircle[] islands)
+	{
+		for(int i = 0; i<cAmount; i++)
+		{
 			IslandCircle ic = new IslandCircle(h, w, r, minr);
 			int j = i;
 			if(i != 0)
@@ -21,7 +26,7 @@ public class Generator {
 					int y_1 = ic.getY();
 					int r_combined = islands[j-1].getR() + ic.getR();
 					int len = (int) Math.sqrt((x_0 - x_1)*(x_0 - x_1) + (y_0 - y_1)*(y_0 - y_1)); //Length between both origins
-					if(len <= r_combined)
+					if(len <= r_combined || x_1 + ic.getR() > 2000 || x_1 - ic.getR() < 0 || y_1 + ic.getR() > 2000 || y_1 - ic.getR() < 0)
 					{
 						j = -1; //Break the for loop if there is overlap
 					}
@@ -29,7 +34,7 @@ public class Generator {
 				}
 			}
 			if (j < 0)
-				i--; //if there was collision dont increment i and regenerate a new island
+				i--; //if there was collision don't increment i and regenerate a new island
 			else
 			{
 			islands[i] = ic;
@@ -37,16 +42,18 @@ public class Generator {
 			ic.printInfo();
 			}
 		}
+	}
+	public void rectangleGen(int widthMax, int widthMin,int heightMax, int heightMin, int rAmount, IslandRectangle[] islands)
+	{
 		
-		IslandRectangle islands2[] = new IslandRectangle[amount];
-		for(int i = 0; i<amount; i++){
+		for(int i = 0; i<rAmount; i++){
 			//x, y, sizeL, minL, sizeW, minW
-			IslandRectangle ir = new IslandRectangle(h, w, 20, 5, 15, 5);
-			islands2[i] = ir;
+			IslandRectangle ir = new IslandRectangle(h, w, widthMax, widthMin, heightMax, heightMin);
+			islands[i] = ir;
 			System.out.println("\nRectangle Island #" + i);
 			ir.printInfo();
 		}
 		
-		
 	}
 }
+
