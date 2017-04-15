@@ -47,7 +47,7 @@ public class PanelMain extends JApplet
     
 
 
-    setSize (812, 802);
+    setSize (802, 852);
   }
 
 }

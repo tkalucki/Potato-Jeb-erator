@@ -1,34 +1,42 @@
 
 import java.awt.*;
+
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.event.*;
-import java.util.ArrayList;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+//import java.util.ArrayList;
 
 public class WholePanel extends JPanel 
 {
-   private Color currentColor;
+
    private CanvasPanel canvas;
-   private JPanel leftPanel;
-   private JButton clear;
-   private ArrayList pointList;
+   private JPanel BottomPanel;
+   private JButton save;
    private IslandCircle[] islands;
-   private Point pt;
-   private int count;
+   private JLabel label1;
+// private ArrayList pointList;
+//   private Point pt;
+//   private int count;
 
 
   public WholePanel(IslandCircle[] islands) {
 	  this.islands = islands;
-      currentColor = Color.BLACK;
-      pointList = new ArrayList();
-      count = 0;
-//      clear = new JButton ("Clear");
-//      leftPanel = new JPanel();
-//      leftPanel.setLayout(new GridLayout(3,1));
-//      leftPanel.add(clear);
+      save = new JButton ("Save");
+      save.addActionListener(new ButtonListener());
+      label1 = new JLabel();
+      BottomPanel = new JPanel();
+      BottomPanel.setLayout(new FlowLayout());
+      save.setPreferredSize(new Dimension(80,30));
+      BottomPanel.add(save);
+      BottomPanel.add(label1);
       canvas = new CanvasPanel();
       //canvas.addMouseListener(new PointListener());
 
-      JSplitPane sp = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, leftPanel, canvas);
+      JSplitPane sp = new JSplitPane(JSplitPane.VERTICAL_SPLIT, canvas, BottomPanel);
+      sp.setResizeWeight(1.0);
       setLayout(new BorderLayout());
       add(sp);
 }
@@ -75,32 +83,63 @@ public class WholePanel extends JPanel
         */
         
   	    }
-       }
     } //end of CanvasPanel class
 
 
-/*   private class ButtonListener implements ActionListener
+   private class ButtonListener implements ActionListener
     {
       public void actionPerformed (ActionEvent event)
       {
-    	  if(event.getSource() == clear)
+    	  if(event.getSource() == save)
     	  {
-    		  pointList.clear();
-    		  pt = null;
-    		  repaint();
-    	  }
-    	  if(event.getSource() == undo)
-    	  {
-    		  for (int i = 0; i < oldPList.size(); i++)
-    		  {
-    			  pointList.set(i, oldPList.get(i));
-    		  }
+    	      int width = 2000, height = 2000;
+
+    	      // TYPE_INT_ARGB specifies the image format: 8-bit RGBA packed
+    	      // into integer pixels
+    	      BufferedImage bi = new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);
+
+    	      Graphics2D ig2 = bi.createGraphics();
+    	      ig2.setColor(Color.CYAN);
+    	      ig2.fillRect(0, 0, 2000, 2000);
+    	      for(int i = 0; i<islands.length; i++)
+    	      {
+    	    	  //unscaled
+    	    	  ig2.setColor(Color.GREEN);
+    	    	  int x = (int) (islands[i].getX());
+    	    	  int y = (int) (islands[i].getY());
+    	    	  int r = (int) (islands[i].getR());
+    	    	  ig2.fillOval(x, y, r, r); //draw green island
+    	    	  ig2.setColor(Color.BLACK);
+    	    	  ig2.drawOval(x, y, r, r); //draw black border
+
+    	      }
+    	      JFileChooser chooser = new JFileChooser();
+    	      String extension = new String(".png");
+    	        int option = chooser.showSaveDialog(null);
+    	        if (option == JFileChooser.APPROVE_OPTION) {
+    	        	File selectedFile = chooser.getSelectedFile();
+
+    	            try {
+    	                String fileName = selectedFile.getCanonicalPath();
+    	                if (!fileName.endsWith(extension)) {
+    	                    selectedFile = new File(fileName + extension);
+    	                }
+    	                ImageIO.write(bi, "PNG", selectedFile);
+    	            } catch (IOException e) {
+    	                e.printStackTrace();
+    	            }
+    	          label1.setText("You saved " + ((chooser.getSelectedFile()!=null)?
+    	                            chooser.getSelectedFile().getName():"nothing")+ ".png");
+    	        }
+    	        else {
+    	          label1.setText("You canceled.");
+    	        }
     	  }
       }
    } 
-   
+}   
 
-
+/*
    // listener class that listens to the mouse
    public class PointListener implements MouseListener
     {
