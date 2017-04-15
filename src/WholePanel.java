@@ -43,7 +43,18 @@ public class WholePanel extends JPanel
         setBackground(Color.CYAN);
         for(int i = 0; i<islands.length; i++)
         {
-        	page.drawOval(islands[i].getX(), islands[i].getY(), islands[i].getR(), islands[i].getR());
+        	//unscaled, to use set bounds for random generation to 800 in PanelMain
+        	//page.drawOval(islands[i].getX(), islands[i].getY(), islands[i].getR(), islands[i].getR());
+        	
+        	//scaled from 2000 to 800 by multiplying by 0.4
+        	page.setColor(Color.GREEN);
+        	int x = (int) (islands[i].getX()*0.4);
+        	int y = (int) (islands[i].getY()*0.4);
+        	int r = (int) (islands[i].getR()*0.4);
+        	page.fillOval(x, y, r, r); //draw green island
+        	page.setColor(Color.BLACK);
+        	page.drawOval(x, y, r, r); //draw black border
+
         }
         //pixel size check
         Dimension appletSize = this.getSize();
