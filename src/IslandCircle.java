@@ -41,6 +41,9 @@ public class IslandCircle
 		x = rnd.nextInt(height);
 		y = rnd.nextInt(width);
 		r = rnd.nextInt(radius-radiusMin)+radiusMin;
+		//makes it centered
+		x = x+r;
+		y = y+r;
 	}
 
 	public void printInfo(){
@@ -53,8 +56,8 @@ public class IslandCircle
 	}
 	
 	public String outLocation(){
-		String s = "X Coord is: " + (x-r) + "\n" +
-				   "Y Coord is: " + (y-r) + "\n";
+		String s = "X Coord is: " + (x) + "\n" +
+				   "Y Coord is: " + (y) + "\n";
 		return s;
 	}
 	
