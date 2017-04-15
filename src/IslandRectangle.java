@@ -1,16 +1,16 @@
 import java.util.Random;
 
-public class IslandCircle
-{
+public class IslandRectangle {
 	private int x;
 	private int y;
-	private int r;
+	private int w;
+	private int h;
 	
-	public IslandCircle(){}
+	public IslandRectangle(){}
 	
-	public IslandCircle(int h, int w, int ar, int armin)
+	public IslandRectangle(int h, int w, int wl, int minwl, int hl, int minhl)
 	{
-		RandomizerCircle(h, w, ar, armin);
+		RandomizerRectangle(h, w, wl, minwl, hl, minhl);
 	}
 	
 	//getters
@@ -20,8 +20,11 @@ public class IslandCircle
 	public int getY(){
 		return y;
 	}
-	public int getR(){
-		return r;
+	public int getW(){
+		return w;
+	}
+	public int getH(){
+		return h;
 	}
 	
 	//setter
@@ -32,17 +35,21 @@ public class IslandCircle
 		l=y;
 	}
 	public void setR(int l){
-		l=r;
+		l=w;
 	}
-
-	public void RandomizerCircle(int height, int width, int radius, int radiusMin){
+	public void setH(int l){
+		l=h;
+	}
+	
+	public void RandomizerRectangle(int s1, int s2, int s3, int min3, int s4, int min4){
 		Random rnd = new Random();
 		//randomize based on map width. make dynamic later
-		x = rnd.nextInt(height);
-		y = rnd.nextInt(width);
-		r = rnd.nextInt(radius-radiusMin)+radiusMin;
+		x = rnd.nextInt(s1);
+		y = rnd.nextInt(s2);
+		w = rnd.nextInt(s3-min3)+min3;
+		h = rnd.nextInt(s4-min4)+min4;
 	}
-
+	
 	public void printInfo(){
 		System.out.println(outInfo());
 	}
@@ -53,8 +60,8 @@ public class IslandCircle
 	}
 	
 	public String outLocation(){
-		String s = "X Coord is: " + (x-r) + "\n" +
-				   "Y Coord is: " + (y-r) + "\n";
+		String s = "X Coord is: " + (x-(w/2)) + "\n" +
+				   "Y Coord ais: " + (y-(h/2)) + "\n";
 		return s;
 	}
 	
@@ -64,6 +71,6 @@ public class IslandCircle
 	}
 	
 	public double outArea(){
-		return Math.PI*r*r;
+		return w*h;
 	}
 }
