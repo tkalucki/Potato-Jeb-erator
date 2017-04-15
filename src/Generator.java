@@ -10,6 +10,7 @@ public class Generator {
 		IslandCircle islands[] = new IslandCircle[amount];
 		for(int i = 0; i<amount; i++){
 			IslandCircle ic = new IslandCircle(h, w, r, minr);
+
 			int j = i; 
 			if (amount != 0) //if not the first iteration
 			{	
