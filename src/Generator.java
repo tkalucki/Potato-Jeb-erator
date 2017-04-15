@@ -10,7 +10,7 @@ public class Generator {
 		IslandCircle islands[] = new IslandCircle[amount];
 		for(int i = 0; i<amount; i++){
 			IslandCircle ic = new IslandCircle(h, w, r, minr);
-			int j = i;
+			/*int j = i;
 			for(;0<=j;j--) //iterate for amount of initialized islands
 			{
 				int x_0 = islands[j].getX();
@@ -28,11 +28,11 @@ public class Generator {
 			if (j < 0)
 				i--; //if there was collision dont increment i and regenerate a new island
 			else
-			{
-			islands[i] = ic;
-			System.out.println("\nCircle Island#" + i);
-			ic.printInfo();
-			}
+			{*/
+				islands[i] = ic;
+				System.out.println("\nCircle Island#" + i);
+				ic.printInfo();
+			//}
 		}
 		
 		IslandRectangle islands2[] = new IslandRectangle[amount];
