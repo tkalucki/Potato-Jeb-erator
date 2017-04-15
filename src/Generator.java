@@ -82,5 +82,6 @@ class MyPanel extends JPanel {
         g.fillRect(squareX,squareY,squareW,squareH);
         g.setColor(Color.BLACK);
         g.drawRect(squareX,squareY,squareW,squareH);
+        repaint();
     }  
 }
