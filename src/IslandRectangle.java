@@ -52,14 +52,6 @@ public class IslandRectangle extends Island{
 		h = rnd.nextInt(s4-min4)+min4;
 	}
 	
-/*	public void printInfo(){
-		System.out.println(outInfo());
-	}*/
-	
-/*	public String outInfo(){
-		String ret = outLocation() + outSize();
-		return ret;
-	}*/
 	
 	public String outLocation(){
 		String s = "X Coord is: " + (x-(w/2)) + "\n" +
@@ -67,10 +59,6 @@ public class IslandRectangle extends Island{
 		return s;
 	}
 	
-/*	public String outSize(){
-		String s = "The size of the island is " + outArea();
-		return s;
-	}*/
 	
 	public double outArea(){
 		return w*h;

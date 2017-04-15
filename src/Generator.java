@@ -36,11 +36,11 @@ public class Generator {
 			if (j < 0)
 				i--; //if there was collision don't increment i and regenerate a new island
 			else
-			{
-			islands[i] = ic;
-			System.out.println("\nCircle Island#" + i);
-			ic.printInfo();
-			}
+			{*/
+				islands[i] = ic;
+				System.out.println("\nCircle Island#" + i);
+				ic.printInfo();
+			//}
 		}
 	}
 	public void rectangleGen(int widthMax, int widthMin,int heightMax, int heightMin, int rAmount, IslandRectangle[] islands)
