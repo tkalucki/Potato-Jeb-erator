@@ -44,12 +44,8 @@ public class PanelMain extends JApplet
 		}
     WholePanel wholePanel = new WholePanel(islands);
     getContentPane().add(wholePanel);
-    
-
-
     setSize (802, 852);
   }
-
 }
 
 
