@@ -10,6 +10,7 @@ public class Generator {
 		IslandCircle islands[] = new IslandCircle[amount];
 		for(int i = 0; i<amount; i++){
 			IslandCircle ic = new IslandCircle(h, w, r, minr);
+			//JACKSONO COLLISION
 			int j = i;
 			for(;0<=j;j--) //iterate for amount of initialized islands
 			{
@@ -29,10 +30,11 @@ public class Generator {
 				i--; //if there was collision dont increment i and regenerate a new island
 			else
 			{
-			islands[i] = ic;
-			System.out.println("\nCircle Island#" + i);
-			ic.printInfo();
+				islands[i] = ic;
+				System.out.println("\nCircle Island#" + i);
+				ic.printInfo();
 			}
+			//JACKSONO COLLISION END
 		}
 		
 		IslandRectangle islands2[] = new IslandRectangle[amount];
