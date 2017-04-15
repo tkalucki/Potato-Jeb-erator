@@ -32,9 +32,9 @@ public class Generator {
 				i--; //if there was collision dont increment i and regenerate a new island
 			else
 			{
-			islands[i] = ic;
-			System.out.println("\nCircle Island#" + i);
-			ic.printInfo();
+				islands[i] = ic;
+				System.out.println("\nCircle Island#" + i);
+				ic.printInfo();
 			}
 		}
 		
