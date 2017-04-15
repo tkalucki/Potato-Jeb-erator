@@ -1,6 +1,6 @@
 import java.util.Random;
 
-public class IslandRectangle {
+public class IslandRectangle extends Island{
 	private int x;
 	private int y;
 	private int w;
@@ -14,12 +14,6 @@ public class IslandRectangle {
 	}
 	
 	//getters
-	public int getX(){
-		return x;
-	}
-	public int getY(){
-		return y;
-	}
 	public int getW(){
 		return w;
 	}
@@ -28,12 +22,6 @@ public class IslandRectangle {
 	}
 	
 	//setter
-	public void setX(int l){
-		l=x;
-	}
-	public void setY(int l){
-		l=y;
-	}
 	public void setR(int l){
 		l=w;
 	}
@@ -50,14 +38,14 @@ public class IslandRectangle {
 		h = rnd.nextInt(s4-min4)+min4;
 	}
 	
-	public void printInfo(){
+/*	public void printInfo(){
 		System.out.println(outInfo());
-	}
+	}*/
 	
-	public String outInfo(){
+/*	public String outInfo(){
 		String ret = outLocation() + outSize();
 		return ret;
-	}
+	}*/
 	
 	public String outLocation(){
 		String s = "X Coord is: " + (x-(w/2)) + "\n" +
@@ -65,12 +53,13 @@ public class IslandRectangle {
 		return s;
 	}
 	
-	public String outSize(){
+/*	public String outSize(){
 		String s = "The size of the island is " + outArea();
 		return s;
-	}
+	}*/
 	
 	public double outArea(){
 		return w*h;
 	}
+	
 }

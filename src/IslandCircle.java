@@ -1,6 +1,6 @@
 import java.util.Random;
 
-public class IslandCircle
+public class IslandCircle extends Island
 {
 	private int x;
 	private int y;
@@ -14,23 +14,11 @@ public class IslandCircle
 	}
 	
 	//getters
-	public int getX(){
-		return x;
-	}
-	public int getY(){
-		return y;
-	}
 	public int getR(){
 		return r;
 	}
 	
 	//setter
-	public void setX(int l){
-		l=x;
-	}
-	public void setY(int l){
-		l=y;
-	}
 	public void setR(int l){
 		l=r;
 	}
@@ -46,14 +34,14 @@ public class IslandCircle
 		y = y+r;
 	}
 
-	public void printInfo(){
+/*	public void printInfo(){
 		System.out.println(outInfo());
-	}
+	}*/
 	
-	public String outInfo(){
+/*	public String outInfo(){
 		String ret = outLocation() + outSize();
 		return ret;
-	}
+	}*/
 	
 	public String outLocation(){
 		String s = "X Coord is: " + (x) + "\n" +
@@ -61,10 +49,10 @@ public class IslandCircle
 		return s;
 	}
 	
-	public String outSize(){
+/*	public String outSize(){
 		String s = "The size of the island is " + outArea();
 		return s;
-	}
+	}*/
 	
 	public double outArea(){
 		return Math.PI*r*r;
