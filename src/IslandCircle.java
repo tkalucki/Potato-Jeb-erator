@@ -12,7 +12,12 @@ public class IslandCircle extends Island
 	{
 		RandomizerCircle(h, w, ar, armin);
 	}
-	
+	public int getX(){
+		return x;
+	}
+	public int getY(){
+		return y;
+	}
 	//getters
 	public int getR(){
 		return r;

@@ -12,7 +12,21 @@ public class IslandRectangle extends Island{
 	{
 		RandomizerRectangle(h, w, wl, minwl, hl, minhl);
 	}
+	//getter
+	public int getX(){
+		return x;
+	}
+	public int getY(){
+		return y;
+	}
 	
+	//setter
+	public void setX(int l){
+		l=x;
+	}
+	public void setY(int l){
+		l=y;
+	}
 	//getters
 	public int getW(){
 		return w;
