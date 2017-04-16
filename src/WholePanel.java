@@ -160,6 +160,15 @@ public class WholePanel extends JPanel
     	    	  ig2.drawOval(x, y, r, r); //draw black border
 
     	      }
+  	          for(int i = 0; i<islands2.length; i++)
+  	          {
+  	          	  //scaled from 2000 to 800 by multiplying by 0.4
+  	        	  ig2.setColor(Color.GREEN);
+  	        	  ig2.fillRect(X, Y, w, h);; //draw green island
+  	        	  ig2.setColor(Color.BLACK);
+  	        	  ig2.drawRect(X, Y, w, h);; //draw black border
+
+  	          }
     	      JFileChooser chooser = new JFileChooser();
     	      String extension = new String(".png");
     	        int option = chooser.showSaveDialog(null);
