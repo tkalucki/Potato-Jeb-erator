@@ -164,6 +164,10 @@ public class WholePanel extends JPanel
   	          {
   	          	  //scaled from 2000 to 800 by multiplying by 0.4
   	        	  ig2.setColor(Color.GREEN);
+  	        	  int X = (int) (islands2[i].getX());
+  	        	  int Y = (int) (islands2[i].getY());
+  	        	  int w = (int) (islands2[i].getW());
+  	        	  int h = (int) (islands2[i].getH());
   	        	  ig2.fillRect(X, Y, w, h);; //draw green island
   	        	  ig2.setColor(Color.BLACK);
   	        	  ig2.drawRect(X, Y, w, h);; //draw black border
