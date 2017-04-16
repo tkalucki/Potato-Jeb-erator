@@ -7,7 +7,8 @@ import java.awt.event.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-//import java.util.ArrayList;
+import java.util.Random;
+
 
 public class WholePanel extends JPanel 
 {
@@ -204,6 +205,12 @@ public class WholePanel extends JPanel
     		  else
     		  { 
     			  gen = new Generator();
+    			  Random rnd = new Random();
+    			  int amount = rnd.nextInt(20);
+    			  if(cAmount == 0)
+    			   	  cAmount = amount;
+    			  if(rAmount == 0)
+    				  rAmount = amount;
     			  islands = new IslandCircle[cAmount];
     			  gen.circleGen(r, minr, cAmount, islands);
     			  islands2 = new IslandRectangle[rAmount];

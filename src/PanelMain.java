@@ -9,10 +9,6 @@ public class PanelMain extends JApplet
   {
     WholePanel wholePanel = new WholePanel();
     getContentPane().add(wholePanel);
-    setSize (802, 852);
+    setSize (802, 872);
   }
 }
-
-
-
-
