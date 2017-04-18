@@ -1,5 +1,3 @@
-import java.util.Random;
-
 import javax.swing.*;
 
 public class PanelMain extends JApplet

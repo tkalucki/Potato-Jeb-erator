@@ -36,10 +36,6 @@ public class WholePanel extends JPanel
    private int widthMax;
    private int widthMin;
    private int flag;
-// private ArrayList pointList;
-//   private Point pt;
-//   private int count;
-
 
   public WholePanel() {
 	  r = 30; minr = 5; widthMax = 30; widthMin = 5; heightMax = 30; heightMin = 5; flag = 0; //Initialize the Limits of the islands generated ***
@@ -76,12 +72,9 @@ public class WholePanel extends JPanel
       BottomPanel.setLayout(new BorderLayout());
       BottomPanel.add(BottomLeftPanel, BorderLayout.WEST);
       BottomPanel.add(BottomRightPanel, BorderLayout.CENTER);
-      //canvas.addMouseListener(new PointListener());
-      //JSplitPane bottomSp = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, BottomLeftPanel, BottomRightPanel);
       JSplitPane sp = new JSplitPane(JSplitPane.VERTICAL_SPLIT, canvas, BottomPanel);
       sp.setResizeWeight(1.0);
       setLayout(new BorderLayout());
-      //add(bottomSp);
       add(sp);
 }
 
@@ -224,21 +217,3 @@ public class WholePanel extends JPanel
    } 
 }   
 
-/*
-   // listener class that listens to the mouse
-   public class PointListener implements MouseListener
-    {
-	 //in case that a user presses using a mouse,
-	 //record the point where it was pressed.
-     public void mousePressed (MouseEvent event)
-      {
-    	 pt = event.getPoint();
-		 repaint();
-      }
-     public void mouseReleased (MouseEvent event) {}
-     public void mouseClicked (MouseEvent event) {}
-     public void mouseEntered (MouseEvent event) {}
-     public void mouseExited (MouseEvent event) {}
-    }
-}
-*/
