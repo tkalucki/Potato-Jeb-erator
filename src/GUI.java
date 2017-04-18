@@ -62,14 +62,14 @@ public class GUI extends JPanel
       BottomRightPanel.add(save);
       BottomRightPanel.add(label1);
       BottomLeftPanel.setLayout(new GridLayout(3,2));
-      label2.setText("Original Radius");
+      label2.setText("Initial Radius");
       label3.setText("Range of Randomness");
       label4.setText("Theta(Degrees)");
       BottomLeftPanel.add(label2);
       BottomLeftPanel.add(label3);
       area1 = new JTextField("25");
       area2 = new JTextField("0.5");
-      area3 = new JTextField("15");
+      area3 = new JTextField("30");
       BottomLeftPanel.add(area1);
       BottomLeftPanel.add(area2);
       BottomLeftPanel.add(label4);
@@ -92,15 +92,6 @@ public class GUI extends JPanel
        {
         super.paintComponent(page);
         setBackground(Color.CYAN);
-      //pixel size check
-        Dimension appletSize = this.getSize();
-        int appletHeight = appletSize.height;
-        int appletWidth = appletSize.width;
-        
-        page.drawString("This applet is " + appletHeight + 
-          " pixels high by " + appletWidth + " pixels wide.", 
-          15, appletHeight/2);
-        
         if(flag == 1)
         {
     		Random rnd = new Random();
@@ -118,7 +109,7 @@ public class GUI extends JPanel
 	        genList2.addAll(Arrays.asList(x+mainr/2,y+mainr/2,mainr));
 	        saveList.addAll(Arrays.asList(x+mainr/2,y+mainr/2,mainr));
 	        int index = 0;
-	        while (mainr > 1 && genList1.size() < 170000)
+	        while (mainr > 1 && genList1.size() < 500000)
 	        {
 		        System.out.println("main radius: " + mainr);
 	        	for (; index < genList1.size();)
@@ -162,7 +153,15 @@ public class GUI extends JPanel
     	      Graphics2D ig2 = bi.createGraphics();
     	      ig2.setColor(Color.CYAN);
     	      ig2.fillRect(0, 0, 2000, 2000);
-    	      
+    	      ig2.setColor(Color.GREEN);
+    	      for(int i = 0; i < genList1.size();)
+    	      {
+    	    	  x = (int) (2.5*genList1.get(i));
+    	    	  y = (int) (2.5*genList1.get(i+1));
+    	    	  r = (int) (2.5*genList1.get(i+2));
+    	    	  ig2.fillOval(x-r/2, y-r/2, r, r); //draw green island
+    	    	  i += 3;
+    	      }
     	      JFileChooser chooser = new JFileChooser();
     	      String extension = new String(".png");
     	        int option = chooser.showSaveDialog(null);
@@ -192,5 +191,4 @@ public class GUI extends JPanel
       }
    } 
 }
-
 
