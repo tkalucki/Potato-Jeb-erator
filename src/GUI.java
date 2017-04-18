@@ -63,7 +63,7 @@ public class GUI extends JPanel
       BottomRightPanel.add(label1);
       BottomLeftPanel.setLayout(new GridLayout(3,2));
       label2.setText("Initial Radius");
-      label3.setText("Range of Randomness");
+      label3.setText("Radius Modifier                       ");
       label4.setText("Theta(Degrees)");
       BottomLeftPanel.add(label2);
       BottomLeftPanel.add(label3);
@@ -187,6 +187,7 @@ public class GUI extends JPanel
     	  {
     		  flag = 1;
     		  repaint();
+    		  label5.setText("Island Generated.");
     	  }
       }
    } 
