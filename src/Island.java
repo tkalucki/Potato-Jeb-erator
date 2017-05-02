@@ -28,6 +28,7 @@ public class Island {
 		return ret;
 	}
 	
+	
 	/**
 	 * Needs to be overwritten
 	 * @author Tyler
@@ -35,12 +36,10 @@ public class Island {
 	public String outLocation(){
 		return "";
 	}
-	
 	public String outSize(){
 		String s = "The size of the island is " + outArea();
 		return s;
 	}
-	
 	/**
 	 * Needs to be overwritten
 	 * @author Tyler
