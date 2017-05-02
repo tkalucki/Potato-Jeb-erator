@@ -10,7 +10,7 @@ import java.io.IOException;
 import java.util.Random;
 
 
-public class WholePanel extends JPanel 
+public class GenMapPanel extends JPanel 
 {
 
    private CanvasPanel canvas;
@@ -37,7 +37,7 @@ public class WholePanel extends JPanel
    private int widthMin;
    private int flag;
 
-  public WholePanel() {
+  public GenMapPanel() {
 	  r = 30; minr = 5; widthMax = 30; widthMin = 5; heightMax = 30; heightMin = 5; flag = 0; //Initialize the Limits of the islands generated ***
       save = new JButton("Save");
       generator = new JButton("Gen Map");
@@ -78,45 +78,42 @@ public class WholePanel extends JPanel
       add(sp);
 }
 
-//CanvasPanel is the panel where shapes will be drawn
+//CanvasPanel is the Map Drawing panel
   private class CanvasPanel extends JPanel
    {
-      //this method draws all shapes
+	  //Method to draw the shapes
       public void paintComponent(Graphics page)
        {
         super.paintComponent(page);
         setBackground(Color.CYAN);
         if(flag == 1)
         {
-	        for(int i = 0; i<islands.length; i++) //Draws circle islands to a scale of 800 x 800
-	        {
-	        	//scaled from 2000 to 800 by multiplying by 0.4
-	        	page.setColor(Color.GREEN);
-	        	int x = (int) (islands[i].getX()*0.4);
-	        	int y = (int) (islands[i].getY()*0.4);
-	        	int r = (int) (islands[i].getR()*0.4);
-	        	page.fillOval(x, y, r, r); //draw green island
-	        	page.setColor(Color.BLACK);
-	        	page.drawOval(x, y, r, r); //draw black border
-	
-	        }
 	        //pixel size check
 	        Dimension appletSize = this.getSize();
 	        int appletHeight = appletSize.height;
 	        int appletWidth = appletSize.width;
-	        
-	        page.drawString("This applet is " + appletHeight + 
-	          " pixels high by " + appletWidth + " pixels wide.", 
-	          15, appletHeight/2);
-
+	       
+	        for(int i = 0; i<islands.length; i++) //Draws circle islands to a scale of 800 x 800
+	        {
+	        	//scaled from 2000 to applet size
+	        	page.setColor(Color.GREEN);
+	        	int x = (int) (islands[i].getX()*(2000/appletWidth));
+	        	int y = (int) (islands[i].getY()*(2000/appletHeight));
+	        	int r1 = (int) (islands[i].getR()*(2000/appletWidth));
+	        	int r2 = (int) (islands[i].getR()*(2000/appletHeight));
+	        	page.fillOval(x, y, r1, r2); //draw green island
+	        	page.setColor(Color.BLACK);
+	        	page.drawOval(x, y, r1, r2); //draw black border
+	
+	        }
 	        for(int i = 0; i<islands2.length; i++)
 	        {
-	        	//scaled from 2000 to 800 by multiplying by 0.4
+	        	//scaled from 2000 to applet size
 	        	page.setColor(Color.GREEN);
-	        	int X = (int) (islands2[i].getX()*0.4);
-	        	int Y = (int) (islands2[i].getY()*0.4);
-	        	int w = (int) (islands2[i].getW()*0.4);
-	        	int h = (int) (islands2[i].getH()*0.4);
+	        	int X = (int) (islands2[i].getX()*(2000/appletWidth));
+	        	int Y = (int) (islands2[i].getY()*(2000/appletHeight));
+	        	int h = (int) (islands2[i].getW()*(2000/appletHeight));
+	        	int w = (int) (islands2[i].getH()*(2000/appletWidth));
 	        	page.fillRect(X, Y, w, h);; //draw green island
 	        	page.setColor(Color.BLACK);
 	        	page.drawRect(X, Y, w, h);; //draw black border
