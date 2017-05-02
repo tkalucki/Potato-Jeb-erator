@@ -40,6 +40,9 @@ public class Generator {
 				System.out.println("\nCircle Island#" + i);
 				ic.printInfo();
 			}
+			islands[i] = ic;
+			System.out.println("\nCircle Island#" + i);
+			ic.printInfo();
 		}
 	}
 	public void rectangleGen(int widthMax, int widthMin,int heightMax, int heightMin, int rAmount, IslandRectangle[] islands)
