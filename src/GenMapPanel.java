@@ -99,7 +99,6 @@ public class GenMapPanel extends JPanel
 	        {
 	        	//scaled from 2000 to applet size
 	        	page.setColor(Color.GREEN);
-	        	System.out.println(2000/(double)appletWidth);
 	        	int x = (int) (islands[i].getX()*(double)appletWidth/2000);
 	        	int y = (int) (islands[i].getY()*(double)appletHeight/2000);
 	        	int r1 = (int) (islands[i].getR()*(double)appletWidth/2000);
