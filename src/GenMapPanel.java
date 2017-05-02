@@ -60,7 +60,7 @@ public class GenMapPanel extends JPanel
       BottomLeftPanel.setLayout(new GridLayout(3,2));
       label2.setText("Number of Circle Islands");
       label3.setText("Number of Rectangle Islands");
-      label4.setText("Default of 0 will have a random number");
+      label4.setText("Enter -1 to randomly generate the amount");
       BottomLeftPanel.add(label2);
       BottomLeftPanel.add(label3);
       area1 = new JTextField("0");
@@ -88,12 +88,12 @@ public class GenMapPanel extends JPanel
         setBackground(Color.CYAN);
         if(flag == 1)
         {
-	        //pixel size check
+	        //applet size measured
 	        Dimension appletSize = this.getSize();
 	        int appletHeight = appletSize.height;
 	        int appletWidth = appletSize.width;
 	       
-	        for(int i = 0; i<islands.length; i++) //Draws circle islands to a scale of 800 x 800
+	        for(int i = 0; i<islands.length; i++) //Draws circle islands
 	        {
 	        	//scaled from 2000 to applet size
 	        	page.setColor(Color.GREEN);
@@ -141,7 +141,7 @@ public class GenMapPanel extends JPanel
     	      ig2.fillRect(0, 0, 2000, 2000);
     	      for(int i = 0; i<islands.length; i++)
     	      {
-    	    	  //unscaled
+  	          	  //Makes Image that's 2000 x 2000 pixels
     	    	  ig2.setColor(Color.GREEN);
     	    	  int x = (int) (islands[i].getX());
     	    	  int y = (int) (islands[i].getY());
@@ -153,7 +153,7 @@ public class GenMapPanel extends JPanel
     	      }
   	          for(int i = 0; i<islands2.length; i++)
   	          {
-  	          	  //scaled from 2000 to 800 by multiplying by 0.4
+  	          	  //Makes Image that's 2000 x 2000 pixels
   	        	  ig2.setColor(Color.GREEN);
   	        	  int X = (int) (islands2[i].getX());
   	        	  int Y = (int) (islands2[i].getY());
@@ -190,17 +190,15 @@ public class GenMapPanel extends JPanel
     	  {
     		  int cAmount = Integer.parseInt(area1.getText());
     		  int rAmount = Integer.parseInt(area2.getText());
-    		  if(cAmount < 0 || cAmount > 5000 || rAmount < 0 || rAmount > 5000)
-    			  label5.setText("Invalid Input");
+    		  gen = new Generator();
+			  Random rnd = new Random();
+			  int amount = rnd.nextInt(20);
+    		  if(cAmount < 0 || cAmount > 5000)
+    			   	  cAmount = amount;
+    		  else if(rAmount < 0 || rAmount > 5000)
+    				  rAmount = amount;
     		  else
     		  { 
-    			  gen = new Generator();
-    			  Random rnd = new Random();
-    			  int amount = rnd.nextInt(20);
-    			  if(cAmount == 0)
-    			   	  cAmount = amount;
-    			  if(rAmount == 0)
-    				  rAmount = amount;
     			  islands = new IslandCircle[cAmount];
     			  gen.circleGen(r, minr, cAmount, islands);
     			  islands2 = new IslandRectangle[rAmount];
