@@ -94,13 +94,17 @@ public class IslMapPanel extends JPanel
         super.paintComponent(page);
         setBackground(Color.CYAN);
         if(flag == 1) 
-        {   	 
+        {
+	        Dimension appletSize = this.getSize();
+	        int appletHeight = appletSize.height;
+	        int appletWidth = appletSize.width;
+  
     		Random rnd = new Random();
         	mainr = Integer.parseInt(area1.getText())*10;
         	theta = Integer.parseInt(area3.getText())*Math.PI/180;
         	modR = Double.parseDouble(area2.getText());
-        	x = 400 - mainr/2;
-        	y = 400 - mainr/2;
+        	x = appletWidth/2 - mainr/2;
+        	y = appletHeight/2 - mainr/2;
 	        page.setColor(Color.GREEN);
 	        page.fillOval(x, y, mainr, mainr); //draw green island
 	        genList1 = new ArrayList<Integer>();
@@ -134,16 +138,7 @@ public class IslMapPanel extends JPanel
 	        	genList2.clear();
 	        	mainr = (int) (modR*mainr);
 	        }
-	        page.setColor(Color.BLACK);
-        	Dimension appletSize = this.getSize();
-	        int appletHeight = appletSize.height;
-	        int appletWidth = appletSize.width;
-	        
-	        page.drawString("This applet is " + appletHeight + 
-	          " pixels high by " + appletWidth + " pixels wide.", 
-	          15, appletHeight/2);
-	       
-  	    }
+ 	    }
        }
     } //end of CanvasPanel class
 
