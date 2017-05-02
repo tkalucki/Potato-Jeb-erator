@@ -36,7 +36,6 @@ public class IslMapPanel extends JPanel
    private double theta;
    private ArrayList<IslandCircle> genList1;
    private ArrayList<IslandCircle> genList2;
-   private ArrayList<IslandCircle> outerList;
    private int appletHeight;
    private int appletWidth;
 
@@ -44,7 +43,6 @@ public class IslMapPanel extends JPanel
   public IslMapPanel() {
       genList1 = new ArrayList<IslandCircle>();
       genList2 = new ArrayList<IslandCircle>();
-      outerList = new ArrayList<IslandCircle>();
       save = new JButton("Save");
       generator = new JButton("Gen Island");
       save.addActionListener(new ButtonListener());
@@ -109,12 +107,10 @@ public class IslMapPanel extends JPanel
 	        IslandCircle base = new IslandCircle(x,y,mainr);
 	        genList1.add(base);
 	        genList2.add(base);
-	        outerList.add(base);
     		Random rnd = new Random();	
 	        int index = 0;
 	        while (mainr > 1 && genList1.size() < 500000)
 	        {
-	        	outerList.clear();
 	        	for (; index < genList1.size();index++)
 	        	{
 	        		int x1 = genList1.get(index).getX();
@@ -133,7 +129,6 @@ public class IslMapPanel extends JPanel
 		        	System.out.println("Cirlce Count: " + index);
 	        	}
 	        	genList1.addAll(genList2);
-	        	outerList.addAll(genList2); //stores the outer most circles
 	        	genList2.clear();
 	        	mainr = (int) (modR*mainr);
 	        }
