@@ -8,7 +8,6 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Random;
 
 
@@ -35,14 +34,17 @@ public class IslMapPanel extends JPanel
    private int r;
    private double modR;
    private double theta;
-   private ArrayList<Integer> genList1;
-   private ArrayList<Integer> genList2;
-   private ArrayList<Integer> saveList;
+   private ArrayList<IslandCircle> genList1;
+   private ArrayList<IslandCircle> genList2;
+   private ArrayList<IslandCircle> outerList;
+   private int appletHeight;
+   private int appletWidth;
 
-   private int flag;
 
   public IslMapPanel() {
-	  flag = 0; 
+      genList1 = new ArrayList<IslandCircle>();
+      genList2 = new ArrayList<IslandCircle>();
+      outerList = new ArrayList<IslandCircle>();
       save = new JButton("Save");
       generator = new JButton("Gen Island");
       save.addActionListener(new ButtonListener());
@@ -93,48 +95,45 @@ public class IslMapPanel extends JPanel
        {
         super.paintComponent(page);
         setBackground(Color.CYAN);
-        if(flag == 1) 
+	    Dimension appletSize = this.getSize();
+	    appletHeight = appletSize.height;
+	    appletWidth = appletSize.width;
+        if(!genList1.isEmpty()) 
         {
-	        Dimension appletSize = this.getSize();
-	        int appletHeight = appletSize.height;
-	        int appletWidth = appletSize.width;
-  
-    		Random rnd = new Random();
-        	mainr = Integer.parseInt(area1.getText())*10;
         	theta = Integer.parseInt(area3.getText())*Math.PI/180;
         	modR = Double.parseDouble(area2.getText());
-        	x = appletWidth/2 - mainr/2;
-        	y = appletHeight/2 - mainr/2;
+	
 	        page.setColor(Color.GREEN);
-	        page.fillOval(x, y, mainr, mainr); //draw green island
-	        genList1 = new ArrayList<Integer>();
-	        genList2 = new ArrayList<Integer>();
-	        saveList = new ArrayList<Integer>();
-	        genList1.addAll(Arrays.asList(x+mainr/2,y+mainr/2,mainr));
-	        genList2.addAll(Arrays.asList(x+mainr/2,y+mainr/2,mainr));
-	        saveList.addAll(Arrays.asList(x+mainr/2,y+mainr/2,mainr));
+	        page.fillOval(x-mainr/2,y-mainr/2,mainr, mainr); //draw base green island
+	      
+	        IslandCircle base = new IslandCircle(x,y,mainr);
+	        genList1.add(base);
+	        genList2.add(base);
+	        outerList.add(base);
+    		Random rnd = new Random();	
 	        int index = 0;
 	        while (mainr > 1 && genList1.size() < 500000)
 	        {
-		        System.out.println("main radius: " + mainr);
-	        	for (; index < genList1.size();)
+	        	outerList.clear();
+	        	for (; index < genList1.size();index++)
 	        	{
-	        		int x1 = genList1.get(index);
-	        		int y1 = genList1.get(index+1);
-	        		int r1 = genList1.get(index+2);
+	        		int x1 = genList1.get(index).getX();
+	        		int y1 = genList1.get(index).getY();
+	        		int r1 = genList1.get(index).getR();
 		        	for (double i = 0; i < 2*Math.PI;)
 		        	{
 		        		x = (int) (x1 + Math.cos(i)*r1/2);
 		        		y = (int) (y1 + Math.sin(i)*r1/2);
 		        		r = rnd.nextInt((int)(mainr))+1;
 		    	        page.fillOval(x-r/2, y-r/2, r, r); //draw green island
-		    	        genList2.addAll(Arrays.asList(x, y, r)); 
+		    	        IslandCircle store = new IslandCircle(x,y,r);
+		    	        genList2.add(store); 
 		        		i = i + theta;
 		        	}
-		        	System.out.println("Cirlce Count: " + index/3);
-		        	index += 3;
+		        	System.out.println("Cirlce Count: " + index);
 	        	}
 	        	genList1.addAll(genList2);
+	        	outerList.addAll(genList2); //stores the outer most circles
 	        	genList2.clear();
 	        	mainr = (int) (modR*mainr);
 	        }
@@ -159,13 +158,13 @@ public class IslMapPanel extends JPanel
     	      ig2.setColor(Color.CYAN);
     	      ig2.fillRect(0, 0, 2000, 2000);
     	      ig2.setColor(Color.GREEN);
-    	      for(int i = 0; i < genList1.size();)
+    	      for(int i = 0; i < genList1.size();i++)
     	      {
-    	    	  x = (int) (2.5*genList1.get(i));
-    	    	  y = (int) (2.5*genList1.get(i+1));
-    	    	  r = (int) (2.5*genList1.get(i+2));
-    	    	  ig2.fillOval(x-r/2, y-r/2, r, r); //draw green island
-    	    	  i += 3;
+    	    	  x = (int) ((2000/(double)appletWidth)*genList1.get(i).getX());
+    	    	  y = (int) ((2000/(double)appletHeight)*genList1.get(i).getY());
+    	    	  int r1 = (int) ((2000/(double)appletWidth)*genList1.get(i).getR());
+    	    	  int r2 = (int) ((2000/(double)appletHeight)*genList1.get(i).getR());
+    	    	  ig2.fillOval(x-r1/2, y-r2/2, r1, r2); //draw green island
     	      }
     	      JFileChooser chooser = new JFileChooser();
     	      String extension = new String(".png");
@@ -190,7 +189,11 @@ public class IslMapPanel extends JPanel
     	  }
     	  else if(event.getSource() == generator)
     	  {
-    		  flag = 1;
+    		  genList1.clear();
+	          x = appletWidth/2 - mainr/2;
+	          y = appletHeight/2 - mainr/2;  
+	          mainr = Integer.parseInt(area1.getText())*10; 
+	          genList1.add(new IslandCircle(x,y,mainr));
     		  repaint();
     	  }
       }
