@@ -134,16 +134,7 @@ public class IslMapPanel extends JPanel
 	        	genList2.clear();
 	        	mainr = (int) (modR*mainr);
 	        }
-	        page.setColor(Color.BLACK);
-        	Dimension appletSize = this.getSize();
-	        int appletHeight = appletSize.height;
-	        int appletWidth = appletSize.width;
-	        
-	        page.drawString("This applet is " + appletHeight + 
-	          " pixels high by " + appletWidth + " pixels wide.", 
-	          15, appletHeight/2);
-	       
-  	    }
+ 	    }
        }
     } //end of CanvasPanel class
 

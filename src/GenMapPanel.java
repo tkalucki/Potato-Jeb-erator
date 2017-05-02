@@ -94,11 +94,7 @@ public class GenMapPanel extends JPanel
 	        Dimension appletSize = this.getSize();
 	        int appletHeight = appletSize.height;
 	        int appletWidth = appletSize.width;
-
-	        page.drawString("This applet is " + appletHeight + 
-	          " pixels high by " + appletWidth + " pixels wide.", 
-	          15, appletHeight/2);
-	        
+        
 	        for(int i = 0; i<islands.length; i++) //Draws circle islands
 	        {
 	        	//scaled from 2000 to applet size
