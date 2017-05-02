@@ -12,7 +12,7 @@ public class IslandCircle extends Island
 	{
 		RandomizerCircle(h, w, ar, armin);
 	}
-	
+
 	public int getX(){
 		return x;
 	}
@@ -49,14 +49,6 @@ public class IslandCircle extends Island
 		y = y+r;
 	}
 
-/*	public void printInfo(){
-		System.out.println(outInfo());
-	}*/
-	
-/*	public String outInfo(){
-		String ret = outLocation() + outSize();
-		return ret;
-	}*/
 	
 	public String outLocation(){
 		String s = "X Coord is: " + (x) + "\n" +
@@ -64,10 +56,6 @@ public class IslandCircle extends Island
 		return s;
 	}
 	
-/*	public String outSize(){
-		String s = "The size of the island is " + outArea();
-		return s;
-	}*/
 	
 	public double outArea(){
 		return Math.PI*r*r;
