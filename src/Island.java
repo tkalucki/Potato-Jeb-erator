@@ -13,10 +13,10 @@ public class Island {
 	
 	//setter
 	public void setX(int l){
-		l=x;
+		x=l;
 	}
 	public void setY(int l){
-		l=y;
+		y=l;
 	}
 	
 	public void printInfo(){

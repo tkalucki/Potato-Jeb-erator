@@ -22,10 +22,10 @@ public class IslandRectangle extends Island{
 	
 	//setter
 	public void setX(int l){
-		l=x;
+		x=1;
 	}
 	public void setY(int l){
-		l=y;
+		y=1;
 	}
 	//getters
 	public int getW(){
@@ -37,10 +37,10 @@ public class IslandRectangle extends Island{
 	
 	//setter
 	public void setR(int l){
-		l=w;
+		w=l;
 	}
 	public void setH(int l){
-		l=h;
+		w=l;
 	}
 	
 	public void RandomizerRectangle(int s1, int s2, int s3, int min3, int s4, int min4){

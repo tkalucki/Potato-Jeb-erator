@@ -8,6 +8,12 @@ public class IslandCircle extends Island
 	
 	public IslandCircle(){}
 	
+	public IslandCircle(int x1, int y1, int r1)
+	{
+		x = x1;
+		y = y1;
+		r = r1;
+	}
 	public IslandCircle(int h, int w, int ar, int armin)
 	{
 		RandomizerCircle(h, w, ar, armin);
@@ -25,9 +31,12 @@ public class IslandCircle extends Island
 	
 	//setter
 	public void setR(int l){
-		l=r;
+		r=l;
 	}
+	public void RandomizeRadius()
+	{
 
+	}
 	public void RandomizerCircle(int height, int width, int radius, int radiusMin){
 		Random rnd = new Random();
 		//randomize based on map width. make dynamic later
