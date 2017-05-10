@@ -1,4 +1,4 @@
-
+//Created by: Tyler Kalucki 
 public class ClusterIsland extends Island
 {
 	private int x;

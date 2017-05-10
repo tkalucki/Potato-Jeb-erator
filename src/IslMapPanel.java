@@ -1,4 +1,7 @@
-
+//Created by: Jackson Allen
+//Class Description: Creates and organizes a panel that contains the specific island map image and generation. The canvas is created above
+//a set of buttons and labels. These buttons either generate a new map based on the parameters in the text-boxes or save the current map
+//as a .png to a location of the users choice. The .png saved is at a scale of 2000x2000 pixels.
 import java.awt.*;
 
 import javax.imageio.ImageIO;

@@ -1,3 +1,4 @@
+//Created by: Tyler Kalucki 
 
 public class Island {
 	private int x;
