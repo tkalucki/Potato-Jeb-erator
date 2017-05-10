@@ -1,3 +1,5 @@
+//Created by: Tyler Kalucki 
+
 import java.util.Random;
 
 public class IslandCircle extends Island
@@ -32,10 +34,6 @@ public class IslandCircle extends Island
 	//setter
 	public void setR(int l){
 		r=l;
-	}
-	public void RandomizeRadius()
-	{
-
 	}
 	public void RandomizerCircle(int height, int width, int radius, int radiusMin){
 		Random rnd = new Random();

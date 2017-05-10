@@ -1,3 +1,4 @@
+//Created by: Tyler Kalucki 
 import java.util.Random;
 
 public class IslandRectangle extends Island{

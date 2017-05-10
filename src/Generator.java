@@ -1,5 +1,7 @@
-
-
+//Created by: Jackson Allen
+//Class Description: Modifies an array of type IslandCircle or IslandRectangle bassed on which method is called. The method called adds a
+//number--determined by parameters-- of randomly generated, Island objects of either type IslandCircle or IslandRectangle. Depending on the
+//type the variables are different however the information stored is used to satsify the "fillOval" or "fillRect"
 public class Generator {
 	
 	private int h;
@@ -47,7 +49,6 @@ public class Generator {
 		
 		for(int i = 0; i<rAmount; i++)
 		{
-			//x, y, sizeL, minL, sizeW, minW
 			IslandRectangle ir = new IslandRectangle(h, w, widthMax, widthMin, heightMax, heightMin);
 			int j = i;
 			if(i != 0)
